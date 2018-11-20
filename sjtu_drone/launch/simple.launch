@@ -7,7 +7,10 @@
   <arg name="headless" value="false"/>
   <arg name="debug" value="false"/>
   <arg name="world_name" default="$(find sjtu_drone)/worlds/contest.world"/>
- 
+  <arg name="drone" default="$(find sjtu_drone)/models/sjtu_drone/sjtu_drone.sdf"/>
+
+  <param name="robot_drone" textfile="$(arg drone)"/>
+
   <!-- start gzserver and load the map -->
   <node name="gazebo" pkg="sjtu_drone" type="start_gzserver" args="$(arg world_name)" respawn="false" output="screen"/>
 	
@@ -17,7 +20,10 @@
   <node name="gazebo_gui" pkg="gazebo_ros" type="gzclient" respawn="false" output="screen" args="$(arg world_name)"/>
 
   <!-- Spawn simulated quadrotor uav -->
-  <node name="spawn_model" pkg="sjtu_drone" type="spawn_model" respawn="false"/>
+
+  <node name="spawn_drone" pkg="gazebo_ros" type="spawn_model" args="-sdf -model drone -param robot_drone -x 0 -y 0 -z 0.1" respawn="false" output="screen"/>
+  
+  <!--<node name="spawn_model" pkg="sjtu_drone" type="spawn_model" respawn="false"/>-->
 
 
    <!-- start keyboard control ui
