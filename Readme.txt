@@ -12,6 +12,7 @@ hector_uav_msgs 를 필요로 하는데, include 에 넣어서 해도 안되서 
 parrot_ardrones 를 catkin_ws/src 폴더 안에 통째로 넣어야한다.
 
 /usr/include 폴더 안에 ignitions 파일이 있어야한다. 
+https://ignitionrobotics.org/api/math/5.0/install.html 에서 다운받고 upgrade를 한다.
  
 sjtu_drone/launch 파일의 simple.launch가 핵심 launch 파일이다. 
 
@@ -21,4 +22,5 @@ Spwan quadrotor을 불러올때 있는 pkg="sjtu_drone"으로 설정하여 spawn
 
 sjtu_drone/models/sjtu_drone 에서 sjtu_drone.sdf 파일이 드론 형상을 만드는 중요한 파일이다. 파일 안에 <mesh> 부분에서 <uri>부분에 실제 모델링 파일을 찾는 경로를 입력해야하는데, model:// 로 시작해야하며, models 경로 다음 부터의 경로를 넣는다(models 와 model://은 상관관계가 있는 듯). 형상이 나오지 않으면 무조건 경로를 의심하자.
  
+드론 형상을 내려면 ~/.gazebo/model 에 sjtu_drone 폴더를 생성하고 sjtu_drone 패키지에 models 폴더의 파일들을 모두 복사해놔야 한다. 
 	
